@@ -10,6 +10,7 @@ from forms import CreatePostForm,RegisterForm,LoginForm,CommentForm
 from flask_gravatar import Gravatar
 from functools import wraps
 from flask import abort
+import os
 
 
 app = Flask(__name__)
@@ -22,6 +23,8 @@ gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=Fa
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+port = int(os.environ.get("PORT", 5000))
+
 
 ##로그인매니저
 login_manager = LoginManager()
